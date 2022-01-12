@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Server</RootNamespace>
+	  <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <Version>0.2.3</Version>
+    <Authors>bazzi.gg</Authors>
+    <Platforms>AnyCPU;x64</Platforms>
+    <AssemblyName>Server</AssemblyName>
+    <PackageVersion>0.0.0</PackageVersion>
+    <Title>Server</Title>
+    <Description>server for bazzi.gg</Description>
+    <PackageProjectUrl>https://github.com/bazzi-gg</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/bazzi-gg/server/blob/main/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/bazzi-gg/server</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>bazzi.gg</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bazzigg.Database" Version="1.0.4" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.39" />
+    <PackageReference Include="Kartrider.Api.AspNetCore" Version="2.0.1" />
+    <PackageReference Include="Kartrider.Metadata.AspNetCore" Version="0.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.12" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="Sentry.AspNetCore" Version="3.12.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0" />
+  </ItemGroup>
+
+
+</Project>

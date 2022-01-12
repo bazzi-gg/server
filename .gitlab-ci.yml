@@ -1,0 +1,28 @@
+# You can override the included template(s) by including variable overrides
+# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
+# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+# Note that environment variables can be set in several places
+# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+stages:
+- build
+- publish
+build:
+  image: mcr.microsoft.com/dotnet/sdk:5.0
+  stage: build
+  script:
+  - dotnet build "Server/Server.csproj" -c Release
+deploy:
+  image: docker:20.10.3
+  stage: publish
+  rules:
+  - if: "$CI_COMMIT_TAG"
+    when: on_success
+  before_script:
+  - docker info
+  variables:
+    REGISTRY_URL: $"REGISTRY_URL"
+  script:
+  - mv "Server/Dockerfile" ./Dockerfile
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  - docker build -t $CI_REGISTRY/bazzi.gg/api-server/server:$CI_COMMIT_TAG .
+  - docker push $CI_REGISTRY/bazzi.gg/api-server/server:$CI_COMMIT_TAG
