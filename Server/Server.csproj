@@ -11,7 +11,7 @@
     <Authors>bazzi.gg</Authors>
     <Platforms>AnyCPU;x64</Platforms>
     <AssemblyName>Server</AssemblyName>
-    <PackageVersion>0.0.0</PackageVersion>
+    <PackageVersion>0.0.2</PackageVersion>
     <Title>Server</Title>
     <Description>server for bazzi.gg</Description>
     <PackageProjectUrl>https://github.com/bazzi-gg</PackageProjectUrl>
