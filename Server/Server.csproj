@@ -34,5 +34,11 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Sql\GetPlayerSummarys_procedure.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 
 </Project>
