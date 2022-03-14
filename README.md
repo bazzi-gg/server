@@ -3,7 +3,7 @@
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 [bazzi.gg](https://bazzi.gg)의 API Server입니다.  
-ASP.NET Core(.NET 5)로 개발되었습니다.
+ASP.NET Core(.NET 6)로 개발되었습니다.
 
 ## Table of Contents
 
