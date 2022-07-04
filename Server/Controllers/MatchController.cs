@@ -73,7 +73,7 @@ namespace Server.Controllers
                     License = player.License,
                     RacingMasterEmblem = hasEmblem != null && hasEmblem.Value,
                     Nickname = player.Nickname,
-                    Rank = player.Rank,
+                    Rank = player.Rank == 0 ? 99 : player.Rank,
                     Record = player.Record,
                     MyTeam = matchDetail.IsTeamMode && player.TeamType == matchDetail.Players[meIndex].TeamType,
                     Character = _kartriderMetadata[MetadataType.Character, player.Character, "알 수 없음"],
@@ -82,6 +82,7 @@ namespace Server.Controllers
                     CharacterHash = player.Character,
                 });
             }
+            players.Sort((left,right) => left.Rank - right.Rank);
             return Ok(new MatchDetailResponse()
             {
                 Index = meIndex,
