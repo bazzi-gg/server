@@ -54,7 +54,7 @@ namespace Server.Controllers
                 return NotFound();
             }
 
-            int meIndex = matchDetail.Players.FindIndex(p => p.AccessId == accessId);
+            Player me = matchDetail.Players.Find(p => p.AccessId == accessId);
 
             List<MatchDetailResponse.Player> players = new(matchDetail.Players.Count);
 
@@ -75,7 +75,7 @@ namespace Server.Controllers
                     Nickname = player.Nickname,
                     Rank = player.Rank == 0 ? 99 : player.Rank,
                     Record = player.Record,
-                    MyTeam = matchDetail.IsTeamMode && player.TeamType == matchDetail.Players[meIndex].TeamType,
+                    MyTeam = matchDetail.IsTeamMode && player.TeamType == me.TeamType,
                     Character = _kartriderMetadata[MetadataType.Character, player.Character, "알 수 없음"],
                     Kartbody = _kartriderMetadata[MetadataType.Kart, player.Kartbody, "알 수 없음"],
                     KartbodyHash = player.Kartbody,
@@ -83,9 +83,10 @@ namespace Server.Controllers
                 });
             }
             players.Sort((left,right) => left.Rank - right.Rank);
+            int index = players.FindIndex(p => p.Nickname == me.Nickname);
             return Ok(new MatchDetailResponse()
             {
-                Index = meIndex,
+                Index = index,
                 Players = players
             });
         }
