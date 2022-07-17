@@ -7,11 +7,11 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <Version>0.0.7</Version>
+    <Version>0.0.8</Version>
     <Authors>bazzi.gg</Authors>
     <Platforms>AnyCPU;x64</Platforms>
     <AssemblyName>Server</AssemblyName>
-    <PackageVersion>0.0.7</PackageVersion>
+    <PackageVersion>0.0.8</PackageVersion>
     <Title>Server</Title>
     <Description>server for bazzi.gg</Description>
     <PackageProjectUrl>https://github.com/bazzi-gg</PackageProjectUrl>
