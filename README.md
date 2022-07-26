@@ -46,13 +46,6 @@ docker container run -d -p 80:80 \
 2. 파일명을 `Server/appsettings.example.json`에서 `Server/appsettings.development.json`으로 변경합니다.
 3. Server.sln을 Rider(Jetbrains) 혹은 Visual Studio로 엽니다.
 
-## Versioning
-
-[ZeroVer](https://0ver.org/)를 사용합니다.
-
-- API 추가, 삭제, 혹은 기존 API와 호환되지 않을 때: `0.UP.*`
-- 그외: `0.*.UP`
-
 ## License
 
 [MIT](./LICENSE)
