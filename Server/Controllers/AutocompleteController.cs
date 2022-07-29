@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace Server.Controllers
 {
@@ -23,6 +24,8 @@ namespace Server.Controllers
             _appDbContext = appDbContext;
         }
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<PlayerSummary>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<IEnumerable<PlayerSummary>> Get([FromQuery] string keyword)
         {
             if (string.IsNullOrEmpty(keyword) || 12 < keyword.Length)
