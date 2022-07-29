@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Server.Controllers
 {
@@ -22,13 +23,11 @@ namespace Server.Controllers
             _appDbContext = appDbContext;
         }
         [HttpGet]
-        public async IAsyncEnumerable<PlayerSummary> Get([FromQuery] string keyword)
+        public ActionResult<IEnumerable<PlayerSummary>> Get([FromQuery] string keyword)
         {
-            var playerSummarys = _appDbContext.PlayerSummary.FromSqlInterpolated($"CALL GetPlayerSummarys({keyword})").AsAsyncEnumerable();
-            await foreach (var playerSummary in playerSummarys)
-            {
-                yield return playerSummary;
-            }
+            var playerSummarys = _appDbContext.PlayerSummary.FromSqlInterpolated($"CALL GetPlayerSummarys({keyword})")
+                .AsEnumerable();
+            return Ok(playerSummarys);
         }
     }
 }
