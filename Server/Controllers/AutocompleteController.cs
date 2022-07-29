@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace Server.Controllers
 {
@@ -22,13 +24,18 @@ namespace Server.Controllers
             _appDbContext = appDbContext;
         }
         [HttpGet]
-        public async IAsyncEnumerable<PlayerSummary> Get([FromQuery] string keyword)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<PlayerSummary>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<IEnumerable<PlayerSummary>> Get([FromQuery] string keyword)
         {
-            var playerSummarys = _appDbContext.PlayerSummary.FromSqlInterpolated($"CALL GetPlayerSummarys({keyword})").AsAsyncEnumerable();
-            await foreach (var playerSummary in playerSummarys)
+            if (string.IsNullOrEmpty(keyword) || 12 < keyword.Length)
             {
-                yield return playerSummary;
+                return BadRequest();
             }
+
+            var playerSummarys = _appDbContext.PlayerSummary.FromSqlInterpolated($"CALL GetPlayerSummarys({keyword})")
+                .AsEnumerable();
+            return Ok(playerSummarys);
         }
     }
 }
