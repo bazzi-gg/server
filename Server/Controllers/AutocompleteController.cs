@@ -25,6 +25,11 @@ namespace Server.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<PlayerSummary>> Get([FromQuery] string keyword)
         {
+            if (string.IsNullOrEmpty(keyword) || 12 < keyword.Length)
+            {
+                return BadRequest();
+            }
+
             var playerSummarys = _appDbContext.PlayerSummary.FromSqlInterpolated($"CALL GetPlayerSummarys({keyword})")
                 .AsEnumerable();
             return Ok(playerSummarys);
